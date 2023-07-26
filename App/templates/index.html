@@ -175,7 +175,7 @@
 
                 var xhr= new XMLHttpRequest({mozSystem: true});
 
-                xhr.open('POST','/App/predict',true);
+                xhr.open('POST','/predict',true);
                 document.getElementById('prediction').innerHTML="Wait! Predicting Price.....";
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState == XMLHttpRequest.DONE){
