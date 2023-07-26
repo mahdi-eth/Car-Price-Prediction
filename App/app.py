@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request
+from flask_cors import CORS
 import pandas as pd
 import numpy as np
 import pickle
 
 app = Flask(__name__)
+CORS(app)
 car = pd.read_csv("cleaned_car.csv")
 model = pickle.load(open("LinearRegressionModel.pkl", "rb"))
 
@@ -17,7 +19,7 @@ def index():
     return render_template("index.html", companies=companies, car_models=car_models, years=years, fuel_types=fuel_types)
 
 
-@app.route("/predict", methods=["POST"])
+@app.route("/predict", methods=['GET', 'POST'])
 def predict():
     company = request.form.get("company")
     car_model = request.form.get("car_models")
